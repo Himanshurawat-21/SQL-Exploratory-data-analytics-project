@@ -54,6 +54,7 @@ The analyses (in `scripts/sales_analysis.sql`) answer several business-critical 
    cd SQL-Exploratory-data-analytics-project
    
 2. **Setup database & tables**
+   
         CREATE TABLE dim_customers (
         customer_id INT PRIMARY KEY,
         name VARCHAR(100),
@@ -77,7 +78,7 @@ The analyses (in `scripts/sales_analysis.sql`) answer several business-critical 
         FOREIGN KEY (customer_id) REFERENCES dim_customers(customer_id)
       );
 
-3. **Load data**
+4. **Load data**
 
      Import CSVs from dataset/gold/ into the respective tables:
      
@@ -87,7 +88,7 @@ The analyses (in `scripts/sales_analysis.sql`) answer several business-critical 
      
      fact_sales.csv → fact_sales
 
-4. **Run analysis**
+5. **Run analysis**
 
   Open scripts/sales_analysis.sql.
   
