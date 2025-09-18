@@ -34,7 +34,7 @@ The tables are related as follows, forming a star schema:
 
 ---
 
-## 3. Key Business Questions Addressed
+## Key Business Questions Addressed
 
 The SQL queries located in the `scripts/sales_analysis.sql` file are designed to answer the following business questions:
 
@@ -47,14 +47,14 @@ The SQL queries located in the `scripts/sales_analysis.sql` file are designed to
 
 ---
 
-## 4. Technologies Used
+## Technologies Used
 
 * **Language:** SQL
 * **Database Environment:** The scripts are written in standard SQL and are compatible with most relational database management systems (RDBMS) like MySQL, PostgreSQL, SQL Server, etc.
 
 ---
 
-## 5. How to Replicate
+## How to Replicate
 
 Follow these steps to set up the environment and run the analysis:
 
