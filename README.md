@@ -90,13 +90,13 @@ The analyses (in `scripts/sales_analysis.sql`) answer several business-critical 
 
 5. **Run analysis**
 
-  Open scripts/sales_analysis.sql.
+     Open scripts/sales_analysis.sql.
+     
+     Execute the queries to answer the business questions.
   
-  Execute the queries to answer the business questions.
-  
-     -- Total revenue --
-      SELECT SUM(quantity * price) AS total_revenue
-      FROM fact_sales;
+        -- Total revenue --
+         SELECT SUM(quantity * price) AS total_revenue
+         FROM fact_sales;
 
 ## 📜 License
 
@@ -105,4 +105,5 @@ The analyses (in `scripts/sales_analysis.sql`) answer several business-critical 
 ## 👤 Author
 
    Himanshu Rawat
+   
    🔗 GitHub: Himanshurawat-21
