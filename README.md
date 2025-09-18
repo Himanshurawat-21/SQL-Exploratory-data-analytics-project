@@ -54,38 +54,38 @@ The analyses (in `scripts/sales_analysis.sql`) answer several business-critical 
    cd SQL-Exploratory-data-analytics-project
    
 2. **Setup database & tables**
-  CREATE TABLE dim_customers (
-  customer_id INT PRIMARY KEY,
-  name VARCHAR(100),
-  location VARCHAR(100)
-);
-
-CREATE TABLE dim_products (
-  product_id INT PRIMARY KEY,
-  name VARCHAR(100),
-  category VARCHAR(100)
-);
-
-CREATE TABLE fact_sales (
-  sale_id INT PRIMARY KEY,
-  product_id INT,
-  customer_id INT,
-  sale_date DATE,
-  quantity INT,
-  price DECIMAL(10,2),
-  FOREIGN KEY (product_id) REFERENCES dim_products(product_id),
-  FOREIGN KEY (customer_id) REFERENCES dim_customers(customer_id)
-);
+        CREATE TABLE dim_customers (
+        customer_id INT PRIMARY KEY,
+        name VARCHAR(100),
+        location VARCHAR(100)
+      );
+      
+      CREATE TABLE dim_products (
+        product_id INT PRIMARY KEY,
+        name VARCHAR(100),
+        category VARCHAR(100)
+      );
+      
+      CREATE TABLE fact_sales (
+        sale_id INT PRIMARY KEY,
+        product_id INT,
+        customer_id INT,
+        sale_date DATE,
+        quantity INT,
+        price DECIMAL(10,2),
+        FOREIGN KEY (product_id) REFERENCES dim_products(product_id),
+        FOREIGN KEY (customer_id) REFERENCES dim_customers(customer_id)
+      );
 
 3. **Load data**
 
-  Import CSVs from dataset/gold/ into the respective tables:
-  
-  dim_customers.csv → dim_customers
-  
-  dim_products.csv → dim_products
-  
-  fact_sales.csv → fact_sales
+     Import CSVs from dataset/gold/ into the respective tables:
+     
+     dim_customers.csv → dim_customers
+     
+     dim_products.csv → dim_products
+     
+     fact_sales.csv → fact_sales
 
 4. **Run analysis**
 
@@ -93,8 +93,8 @@ CREATE TABLE fact_sales (
   
   Execute the queries to answer the business questions.
   -- Total revenue --
-SELECT SUM(quantity * price) AS total_revenue
-FROM fact_sales;
+   SELECT SUM(quantity * price) AS total_revenue
+   FROM fact_sales;
 
 ## 📜 License
 MIT License
