@@ -104,6 +104,4 @@ The analyses (in `scripts/sales_analysis.sql`) answer several business-critical 
 
 ## 👤 Author
 
-   Himanshu Rawat
-   
-   🔗 GitHub: Himanshurawat-21
+   Himanshu Rawat - https://github.com/Himanshurawat-21
