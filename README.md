@@ -59,24 +59,24 @@ The analyses (in `scripts/sales_analysis.sql`) answer several business-critical 
         customer_id INT PRIMARY KEY,
         name VARCHAR(100),
         location VARCHAR(100)
-      );
-      
-      CREATE TABLE dim_products (
-        product_id INT PRIMARY KEY,
-        name VARCHAR(100),
-        category VARCHAR(100)
-      );
-      
-      CREATE TABLE fact_sales (
-        sale_id INT PRIMARY KEY,
-        product_id INT,
-        customer_id INT,
-        sale_date DATE,
-        quantity INT,
-        price DECIMAL(10,2),
-        FOREIGN KEY (product_id) REFERENCES dim_products(product_id),
-        FOREIGN KEY (customer_id) REFERENCES dim_customers(customer_id)
-      );
+         );
+         
+         CREATE TABLE dim_products (
+           product_id INT PRIMARY KEY,
+           name VARCHAR(100),
+           category VARCHAR(100)
+         );
+         
+         CREATE TABLE fact_sales (
+           sale_id INT PRIMARY KEY,
+           product_id INT,
+           customer_id INT,
+           sale_date DATE,
+           quantity INT,
+           price DECIMAL(10,2),
+           FOREIGN KEY (product_id) REFERENCES dim_products(product_id),
+           FOREIGN KEY (customer_id) REFERENCES dim_customers(customer_id)
+         );
 
 4. **Load data**
 
@@ -93,13 +93,16 @@ The analyses (in `scripts/sales_analysis.sql`) answer several business-critical 
   Open scripts/sales_analysis.sql.
   
   Execute the queries to answer the business questions.
-  -- Total revenue --
-   SELECT SUM(quantity * price) AS total_revenue
-   FROM fact_sales;
+  
+     -- Total revenue --
+      SELECT SUM(quantity * price) AS total_revenue
+      FROM fact_sales;
 
 ## 📜 License
-MIT License
+
+   MIT License
 
 ## 👤 Author
-Himanshu Rawat
-🔗 GitHub: Himanshurawat-21
+
+   Himanshu Rawat
+   🔗 GitHub: Himanshurawat-21
