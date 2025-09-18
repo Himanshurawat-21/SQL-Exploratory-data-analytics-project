@@ -1,137 +1,104 @@
-# SQL Exploratory Data Analytics Project
+# SQL for Business Analytics: An Exploratory Data Analysis
 
-## 📌 Overview
+## 📌 Project Overview
 
-This project demonstrates how to perform **Exploratory Data Analysis (EDA)** using SQL on a structured dataset. It covers multiple analytical perspectives including:
+This project leverages SQL to conduct a comprehensive exploratory data analysis (EDA) on a sales dataset. The primary objective is to extract actionable business insights regarding customer behavior, product performance, and overall sales trends.
 
-* Sales performance analysis
-* Customer segmentation
-* Product trends
-* Category distribution
-* Location-based insights
+## 📂 Dataset
 
-The repository contains:
+The project uses three CSV files located in the `dataset/gold/` directory:
 
-* **Dataset** (`dataset/`) – Contains CSV files for customers, products, and sales.
-* **Scripts** (`scripts/`) – SQL queries for various analytical problems.
-* **Docs** (`docs/`) – Documentation and notes.
+| File | Description |
+|---|---|
+| **dim_customers.csv** | Stores details about each customer: `customer_id`, `name`, `location`. |
+| **dim_products.csv** | Information about each product: `product_id`, `name`, `category`. |
+| **fact_sales.csv** | Records all transaction details. Fields include: `sale_id`, `product_id`, `customer_id`, `sale_date`, `quantity`, `price` (unit price at time of sale). |
 
----
+### Schema & Relationships
 
-## 📂 Dataset Structure
+- **fact_sales** is the *fact* table.  
+- **dim_customers** and **dim_products** are *dimension* tables.  
+- `fact_sales.customer_id` → `dim_customers.customer_id`  
+- `fact_sales.product_id` → `dim_products.product_id`  
 
-The dataset follows a **star schema** design with `sales_fact` as the central table.
-
-### Tables
-
-1. **customers**
-
-   * `customer_id` (PK)
-   * `name`
-   * `location`
-   * `age`
-
-2. **products**
-
-   * `product_id` (PK)
-   * `product_name`
-   * `category`
-   * `price`
-
-3. **sales\_fact**
-
-   * `sale_id` (PK)
-   * `customer_id` (FK → customers)
-   * `product_id` (FK → products)
-   * `quantity`
-   * `sale_date`
+This forms a star schema.
 
 ---
 
-## 🔎 Key Analyses Performed
+## 🔎 Key Business Questions Addressed
 
-The SQL scripts in `scripts/` provide insights into:
+The analyses (in `scripts/sales_analysis.sql`) answer several business-critical questions:
 
-1. **Sales Performance**
-
-   * Total revenue
-   * Top-selling products
-   * Best customers
-
-2. **Product & Category Analysis**
-
-   * Revenue contribution by category
-   * Product sales distribution
-   * Price vs sales trends
-
-3. **Customer Analysis**
-
-   * Customer lifetime value (CLV)
-   * Purchase frequency
-   * Location-based segmentation
-
-4. **Time-based Analysis**
-
-   * Monthly & yearly revenue trends
-   * Seasonal analysis
-   * Cumulative sales growth
+1. What is the **total sales revenue** generated?  
+2. Which are the top 5 **best-selling products** by revenue?  
+3. How is the sales distributed across **product categories**?  
+4. What are the **monthly sales trends** over time?  
+5. Who are the **top 5 most valuable customers** by total spending?  
+6. Which **customer locations** generate the most sales?
 
 ---
 
-## ▶️ How to Run
+## ⚙ Technologies Used
 
-1. **Clone the repository**
+- SQL (standard ANSI SQL, should work in most RDBMS: PostgreSQL, MySQL, SQL Server, etc.)  
+- Dataset format: CSV files  
+- Local / development environment: any SQL client or command line tool capable of importing CSV and executing SQL queries
 
+---
+
+## ▶️ How to Run / Reproduce
+
+1. **Clone the repository**  
    ```bash
    git clone https://github.com/Himanshurawat-21/SQL-Exploratory-data-analytics-project.git
    cd SQL-Exploratory-data-analytics-project
-   ```
+   
+2. **Setup database & tables**
+  CREATE TABLE dim_customers (
+  customer_id INT PRIMARY KEY,
+  name VARCHAR(100),
+  location VARCHAR(100)
+);
 
-2. **Load the dataset** into your SQL database (MySQL / PostgreSQL / SQL Server):
+CREATE TABLE dim_products (
+  product_id INT PRIMARY KEY,
+  name VARCHAR(100),
+  category VARCHAR(100)
+);
 
-   * Create tables based on schema above
-   * Import CSV files from `dataset/`
+CREATE TABLE fact_sales (
+  sale_id INT PRIMARY KEY,
+  product_id INT,
+  customer_id INT,
+  sale_date DATE,
+  quantity INT,
+  price DECIMAL(10,2),
+  FOREIGN KEY (product_id) REFERENCES dim_products(product_id),
+  FOREIGN KEY (customer_id) REFERENCES dim_customers(customer_id)
+);
 
-3. **Run SQL scripts** from the `scripts/` folder.
-   Example:
+3. **Load data**
 
-   ```sql
-   -- Total revenue
-   SELECT SUM(s.quantity * p.price) AS total_revenue
-   FROM sales_fact s
-   JOIN products p ON s.product_id = p.product_id;
-   ```
+  Import CSVs from dataset/gold/ into the respective tables:
+  
+  dim_customers.csv → dim_customers
+  
+  dim_products.csv → dim_products
+  
+  fact_sales.csv → fact_sales
 
-4. **Check outputs** – Each query produces results that can be exported to CSV or visualized in BI tools.
+4. **Run analysis**
 
----
-
-## 📊 Example Outputs
-
-* **Top 5 Products by Revenue**
-* **Monthly Revenue Trend**
-* **Customer Segmentation by Spend**
-* **Category Contribution (Pie chart possible in Tableau/PowerBI)**
-
----
-
-## 🚀 Future Improvements
-
-* Add **parameterized queries** (date range, category filter).
-* Optimize queries with **indexes** for faster performance.
-* Create **dashboards** using Tableau/PowerBI.
-* Extend dataset with promotions, discounts, and region hierarchies.
-
----
+  Open scripts/sales_analysis.sql.
+  
+  Execute the queries to answer the business questions.
+  -- Total revenue --
+SELECT SUM(quantity * price) AS total_revenue
+FROM fact_sales;
 
 ## 📜 License
-
-This project is licensed under the **MIT License**.
-
----
+MIT License
 
 ## 👤 Author
-
-**Himanshu Rawat**
-📧 Contact: \[priyansh4929@gmail.com]
-🔗 GitHub: [Himanshurawat-21](https://github.com/Himanshurawat-21)
+Himanshu Rawat
+🔗 GitHub: Himanshurawat-21
